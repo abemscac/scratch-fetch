@@ -1,0 +1,31 @@
+{
+  "name": "scratch-fetch",
+  "version": "1.0.19",
+  "description": "JavaScript FetchAPI library.",
+  "main": "src/index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abemscac/scratch-fetch.git"
+  },
+  "keywords": [
+    "fetch",
+    "javascript"
+  ],
+  "author": "abe.msc.ac",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abemscac/scratch-fetch/issues"
+  },
+  "homepage": "https://github.com/abemscac/scratch-fetch#readme",
+  "devDependencies": {
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "@types/node": "^13.1.4"
+  }
+}
