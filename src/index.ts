@@ -108,6 +108,7 @@ class HttpRequest implements IHttpRequest {
         this._requestInit = {
             mode: "cors",
             method: method,
+            credentials: (props?.configuration?.credentials || "include"),
             headers: {
                 ...(this._useDefaultHeaders ? getDefaultHeaders() : {}),
                 ...(props?.headers ? props.headers : {})
