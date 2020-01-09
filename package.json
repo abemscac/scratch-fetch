@@ -1,6 +1,6 @@
 {
   "name": "scratch-fetch",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "JavaScript FetchAPI library.",
   "main": "src/index.js",
   "types": "index.d.ts",
