@@ -43,14 +43,14 @@ const handleResponse = async (response: Response): Promise<HttpResponse> => {
         ok: response.ok,
         status: response.status,
         isAborted: false,
-        response: undefined,
+        value: undefined,
         error: {}
     };
     if (response.ok) {
         let json = null;
         try {
             json = (response.status === statusCodes.noContent) ? null : await response.json();
-            result.response = json;
+            result.value = json;
         }
         catch (error) {
             // JSON error
@@ -82,7 +82,7 @@ const catchError = (error: Error) => {
         ok: false,
         status: undefined,
         isAborted,
-        response: undefined,
+        value: undefined,
         error
     };
 };
@@ -144,8 +144,9 @@ class HttpRequest implements IHttpRequest {
             isInDevMode() && console.warn(`A httpRequest instance can only send one request at the same time. If you wish to remove this constraint, you can set the "allowMultiple" attribute in configuration to true.`);
             return {
                 ok: false,
+                status: undefined,
                 isAborted: true,
-                response: undefined,
+                value: undefined,
                 error: {}
             };
         }

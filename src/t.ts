@@ -33,6 +33,6 @@ export interface HttpResponse {
     ok: boolean;
     status?: number;
     isAborted: boolean;
-    response: any;
+    value: any;
     error: {}
 }
