@@ -122,7 +122,7 @@ requests.updateData.abort();
 | **withHeaders** | ```value: {}``` | ```IHttpRequest``` |
 | **withBody** | ```value: any``` | ```IHttpRequest``` |
 | **addHeaders** | ```value: {}``` | ```undefined (void)``` |
-| **execute** | - | ```HttpResponse``` |
+| **execute** | - | ```Promise<HttpResponse>``` |
 | **abort** | - | ```undefined (void)``` |
 
 ##### HttpResponse
