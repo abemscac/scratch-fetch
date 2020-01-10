@@ -111,6 +111,9 @@ requests.updateData.abort();
 | **allowMultiple** | ```boolean``` | ```false``` |
 | **credentials** | ```RequestCredentials``` | ```"include"``` |
 
+- The ```allowMultiple``` property is used to **prevent a request from getting sent multiple times before the previous one is done**. By default, this attribute is set to ```false```. If you wish to remove this constraint, you can set it to ```true```.
+- For more info about ```credentials``` property, please visit [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Request/credentials "MDN Web Docs")
+
 ### 2. Methods
 
 | Name | Arguments | Returned value type |
