@@ -69,7 +69,7 @@ const requests = {
 
 async function fetchMyData() {
   const queryString = ""; // queryString may be different every time you call this function.
-  const response = requests.fetchData()
+  const response = requests.fetchData
                           .withUrl(`https://localhost:8080/api/hello?${queryString}`)
                           .execute();
 }
