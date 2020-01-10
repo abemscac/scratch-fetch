@@ -34,9 +34,8 @@ const response = await httpPost({
 
 **By methods**
 ```javascript
-const uid = 5;
 const response = await httpPost()
-                        .withUrl(`https://localhost:8080/api/hello?uid=${uid}`)
+                        .withUrl("https://localhost:8080/api/hello")
                         .withHeaders({
                             "KEY_0": "VALUE",
                             "KEY_1": "VALUE"
@@ -46,8 +45,8 @@ const response = await httpPost()
                         }).execute();
 ```
 
-- By default, the request contains ```"Accept": "application/json"``` and ```"Content-Type": "application/json"``` headers. If you wish to remove default headers, you can set the ```useDefaultHeaders``` property in `configuration` to false.
-- The ```body``` of a request will be stringified automatically. If you wish to keep your request body raw, you can set the ```stringifyBody``` property in ```configuration``` to ```false```.
+- By default, the request contains ```"Accept": "application/json"``` and ```"Content-Type": "application/json"``` headers. If you wish to remove default headers, you can set the ```useDefaultHeaders``` property in `configuration` to false when initializing the request. (in constructor)
+- The ```body``` of a request will be stringified automatically. If you wish to keep your request body raw, you can set the ```stringifyBody``` property in ```configuration``` to ```false``` when initializing the request. (in constructor)
 
 For example,
 ```javascript
@@ -58,6 +57,45 @@ const response = await httpGet({
                             stringifyBody: false // <- Keep request body raw.
                         }
                     }).execute();
+```
+
+You can reuse a request object multiple times. If you want to change the url of the request (for most cases, we want to change the query parameters), then you can call the ```withUrl``` method at any time to achieve this aim.
+
+For example,
+```javascript
+const requests = {
+  fetchData: httpGet()
+};
+
+async function fetchMyData() {
+  const queryString = ""; // queryString may be different every time you call this function.
+  const response = requests.fetchData()
+                          .withUrl(`https://localhost:8080/api/hello?${queryString}`)
+                          .execute();
+}
+```
+
+```scratch-fetch``` also offers you a function to build query string. To use this function, we have to import it from the module.
+
+**1. ES5 or earlier**
+```javascript
+var buildQueryString = require("scratch-fetch").buildQueryString;
+```
+
+**2. ES6**
+```javascript
+import { buildQueryString } from "scratch-fetch";
+```
+
+Then you can use this function to build your query string.
+
+For example,
+```javascript
+const params = {
+  page: 5,
+  size: 20
+};
+const queryString = buildQueryString(params); // queryString will be "page=5&size=20", WITHOUT the leading question mark.
 ```
 
 ## 4.  Get response and handle errors
@@ -72,8 +110,10 @@ else if (!response.isAborted) {
 }
 ```
 
-## 5. Abort request (optional)
+### What do I do if I want to abort a request?
 You can call the `abort` method to abort a request.
+
+For example,
 ```javascript
 const requests = {
     fetchData: httpGet(),
@@ -92,7 +132,7 @@ requests.updateData.abort();
 - If a request is **already done** (that means you have received the value of response), then the ```abort``` method **will not do anything**.
 - You can handle abort error by checking the ```isAborted``` property in the response.
 
-## 6. API References
+## 5. API References
 ### 1. Constructor
 
 | Name | Type | Default value |
