@@ -59,7 +59,7 @@ const response = await httpGet({
                     }).execute();
 ```
 
-You can reuse a request object multiple times. If you want to change the url of the request (for most cases, we want to change the query parameters), then you can call the ```withUrl``` method at any time to achieve this aim.
+You can reuse a request object multiple times. If you want to change the url of the request (for most cases, we want to change route parameters or query parameters), then you can call the ```withUrl``` method at any time to achieve this aim.
 
 For example,
 ```javascript
@@ -158,10 +158,15 @@ requests.updateData.abort();
 
 | Name | Arguments | Returned value type |
 | :------------: | :------------: | :------------: |
+| **url** | ```none (getter)``` | ```string``` |
+| **headers** | ```none (getter)``` | ```{}``` |
+| **body** | ```none (getter)``` | ```any``` |
 | **withUrl** | ```value: string``` | ```IHttpRequest``` |
 | **withHeaders** | ```value: {}``` | ```IHttpRequest``` |
 | **withBody** | ```value: any``` | ```IHttpRequest``` |
 | **addHeaders** | ```value: {}``` | ```undefined (void)``` |
+| **patchHeaders** | ```value: {}``` | ```undefined (void)``` |
+| **removeHeader** | ```key: string``` | ```boolean``` |
 | **execute** | - | ```Promise<HttpResponse>``` |
 | **abort** | - | ```undefined (void)``` |
 

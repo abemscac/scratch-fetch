@@ -1,4 +1,7 @@
 export interface IHttpRequest {
+    readonly url: string;
+    readonly headers: StringKeyValueObject;
+    readonly body: any;
     /** Set the url of the request */
     withUrl(value?: string): IHttpRequest;
     /** Replace the headers of the request with given value. Default headers will be included if useDefaultHeaders attribute is not set to false. */
@@ -7,6 +10,10 @@ export interface IHttpRequest {
     withBody(value: any): IHttpRequest;
     /** Append given value to the headers of the request. */
     addHeaders(value: StringKeyValueObject): void;
+    /** Patch the values in the headers of the request. */
+    patchHeaders(value: StringKeyValueObject): void;
+    /** Remove header with given key. */
+    removeHeader(key: string): boolean;
     execute(): Promise<HttpResponse>;
     abort(): void;
 }
