@@ -162,12 +162,14 @@ class HttpRequest implements IHttpRequest {
 
     public patchHeaders(value: StringKeyValueObject): void {
         for(const key in value) {
-            this._headers[key] = value[key];
+            if (this._headers.hasOwnProperty(key)) {
+                this._headers[key] = value[key];
+            }
         }
     };
 
     public removeHeader(key: string): boolean {
-        const itemExists = this._headers.prototype.hasOwnProperty(key);
+        const itemExists = this._headers.hasOwnProperty(key);
         if (itemExists) {
             delete this._headers[key];
         }

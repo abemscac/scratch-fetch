@@ -10,9 +10,9 @@ export interface IHttpRequest {
     withBody(value: any): IHttpRequest;
     /** Append given value to the headers of the request. */
     addHeaders(value: StringKeyValueObject): void;
-    /** Patch the values in the headers of the request. */
+    /** Patch the values in the headers of the request. (Only existed property will be patched) */
     patchHeaders(value: StringKeyValueObject): void;
-    /** Remove header with given key. */
+    /** Remove header with given key. Return true if provided property eixsts, else return false. */
     removeHeader(key: string): boolean;
     execute(): Promise<HttpResponse>;
     abort(): void;
